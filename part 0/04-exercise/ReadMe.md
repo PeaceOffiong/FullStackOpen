@@ -4,7 +4,7 @@ sequenceDiagram
     
     browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
     activate server
-    server-->>browser: URL redirect for the browser to request notes page
+    server-->>browser: Asks the browser for a URL redirect to notes page
     deactivate server
     
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
