@@ -1,9 +1,19 @@
-const Total = ({exercises1, exercises2, exercises3}) => {
+const Total = ({ parts }) => {
+
+  const totalSum = () => {
+    let total = 0
+    parts.map((part) => {
+      total += part.exercises
+    })
+    return total;
+  }
   return (
     <>
-      <p>Number of excercises {exercises1 + exercises2 + exercises3}</p>
+      <p>
+        {`Number of exercises ${totalSum()}`}
+      </p>
     </>
   );
-}
+};
 
-export default Total 
+export default Total;
