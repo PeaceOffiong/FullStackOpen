@@ -13,8 +13,8 @@ function App() {
     "The only way to go fast, is to go well.",
   ];
 
-  const points = [0, 0, 0, 0, 0, 0, 0, 0];
-
+  const points = [0, 0, 0, 0, 0, 0, 0, 0]
+  
   const [selected, setSelected] = useState(0);
   const [vote, setVotes] = useState(points);
 
