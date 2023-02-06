@@ -3,8 +3,8 @@ import Part from "./Part";
 const Content = ({ parts }) => {
   return (
     <>
-      {parts.map((part) => {
-        return <Part part={part} />;
+      {parts.map((part, index) => {
+        return <Part part={part} key={ index} />;
       })}
     </>
   );
