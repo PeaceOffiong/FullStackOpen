@@ -1,4 +1,4 @@
-const Persons = ({ displayPersons }) => {
+const Persons = ({ displayPersons, deletePerson }) => {
   if (!displayPersons) {
     return <h1>Loading ...</h1>;
   }
@@ -8,6 +8,7 @@ const Persons = ({ displayPersons }) => {
         return (
           <li key={index}>
             {person.name} {person.number}
+            <button onClick={() =>deletePerson(person.id)}>Delete</button>
           </li>
         );
       })}
