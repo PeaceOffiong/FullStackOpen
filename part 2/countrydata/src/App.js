@@ -60,8 +60,6 @@ function App() {
     setWeatherOfLocation([specifiedCountry]);
   };
 
-  console.log(weather);
-  console.log(weather);
   return (
     <div>
       <form>
