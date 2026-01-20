@@ -7,6 +7,7 @@ const path = require('path')
 
 app.use(cors())
 app.use(express.json());
+app.use(express.static('dist'))
 
 morgan.token('body', (req) => {
   return JSON.stringify(req.body);
@@ -19,6 +20,7 @@ const dataFile = path.join(__dirname, 'contacts.json');
 // Load contacts from file or use default
 let contacts = [];
 
+const baseUrl = '/api/contacts'
 const loadContacts = () => {
   try {
     if (fs.existsSync(dataFile)) {
@@ -72,7 +74,7 @@ const generateId = () => {
   return maxId + 1;
 }
 
-app.get('/api/contacts', (req, res) => {
+app.get(baseUrl, (req, res) => {
   res.json(contacts);
 })
 
@@ -80,7 +82,7 @@ app.get('/info', (req, res) => {
   res.send(`<p>Phonebook has info for ${contacts.length} people</p><p>${new Date()}</p>`);
 })
 
-app.get("/api/contacts/:id", (req, res) => {
+app.get(`${baseUrl}/:id`, (req, res) => {
   console.log(req.params.id);
   console.log(contacts);
   const id = req.params.id;
@@ -92,14 +94,14 @@ app.get("/api/contacts/:id", (req, res) => {
   }
 })
 
-app.delete("/api/contacts/:id", (req, res) => {
+app.delete(`${baseUrl}/:id`, (req, res) => {
   const id = req.params.id;
   contacts = contacts.filter(contact => contact.id !== id);
   saveContacts();
   res.status(204).end();
 })
 
-app.post("/api/contacts", (req, res) => {
+app.post(baseUrl, (req, res) => {
   const body = req.body;
   if(!body.name || !body.number){
     return res.status(400).json({
